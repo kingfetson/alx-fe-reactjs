@@ -12,7 +12,7 @@ const UserProfile = (props) => {
 const styles = {
   card: {
     border: "1px solid #ddd",
-    borderRadius: "8px",
+    borderRadius: "10px",
     padding: "20px",
     maxWidth: "300px",
     margin: "20px auto",
