@@ -2,6 +2,10 @@ import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
+import ProfilePage from './components/ProfilePage';
+import UserInfo from './components/UserInfo';
+import UserDetails from './components/UserDetails';
+import UserContext from "./context/UserContext";
 
 function App() {
   return (
