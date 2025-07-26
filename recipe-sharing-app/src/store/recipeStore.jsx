@@ -1,26 +1,23 @@
-import { useParams } from 'react-router-dom';
-import { useRecipeStore } from './recipeStore';
-import EditRecipeForm from './components/EditRecipeForm';
-import DeleteRecipeButton from './components/DeleteRecipeButton';
+// src/store/recipeStore.jsx
+import { create } from 'zustand';
 
-const RecipeDetails = () => {
-  const { id } = useParams(); // Get the ID from the URL
-  const recipe = useRecipeStore((state) =>
-    state.recipes.find((recipe) => recipe.id === Number(id))
-  );
-
-  if (!recipe) return <p>Recipe not found.</p>;
-
-  return (
-    <div>
-      <h1>{recipe.title}</h1>
-      <p>{recipe.description}</p>
-
-      {/* Add edit and delete components */}
-      <EditRecipeForm recipe={recipe} />
-      <DeleteRecipeButton recipeId={recipe.id} />
-    </div>
-  );
-};
-
-export default RecipeDetails;
+export const useRecipeStore = create((set) => ({
+  recipes: [
+    { id: 1, title: 'Pancakes', description: 'Fluffy and delicious' },
+    { id: 2, title: 'Spaghetti', description: 'With tomato sauce' },
+    // Add initial recipes here or start with an empty array
+  ],
+  addRecipe: (recipe) => set((state) => ({
+    recipes: [...state.recipes, recipe],
+  })),
+  updateRecipe: (updatedRecipe) =>
+    set((state) => ({
+      recipes: state.recipes.map((r) =>
+        r.id === updatedRecipe.id ? updatedRecipe : r
+      ),
+    })),
+  deleteRecipe: (id) =>
+    set((state) => ({
+      recipes: state.recipes.filter((r) => r.id !== id),
+    })),
+}));
