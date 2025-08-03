@@ -8,27 +8,35 @@ export const useRecipeStore = create((set, get) => ({
     { id: 3, title: 'Salad', description: 'Fresh and healthy' },
   ],
 
-  // ✅ Search state
   searchTerm: '',
   setSearchTerm: (term) => set({ searchTerm: term }),
 
-  // ✅ Filtered recipes (derived state)
-  filteredRecipes: [],
+  // ✅ Favorites
+  favorites: [],
+  addFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: [...state.favorites, recipeId],
+    })),
+  removeFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.filter((id) => id !== recipeId),
+    })),
 
-  // ✅ Update filtered recipes dynamically
-  updateFilteredRecipes: () => {
-    const { recipes, searchTerm } = get();
-    const filtered = recipes.filter((recipe) =>
-      recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+  // ✅ Recommendations
+  recommendations: [],
+  generateRecommendations: () => {
+    const { recipes, favorites } = get();
+    const recommended = recipes.filter(
+      (recipe) => favorites.includes(recipe.id) && Math.random() > 0.5
     );
-    set({ filteredRecipes: filtered });
+    set({ recommendations: recommended });
   },
 
+  // Existing actions
   setRecipes: (recipes) => set({ recipes }),
-  addRecipe: (recipe) =>
-    set((state) => ({
-      recipes: [...state.recipes, recipe],
-    })),
+  addRecipe: (recipe) => set((state) => ({
+    recipes: [...state.recipes, recipe],
+  })),
   updateRecipe: (updatedRecipe) =>
     set((state) => ({
       recipes: state.recipes.map((r) =>
