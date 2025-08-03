@@ -1,4 +1,3 @@
-// src/store/recipeStore.jsx
 import { create } from 'zustand';
 
 export const useRecipeStore = create((set) => ({
@@ -7,6 +6,7 @@ export const useRecipeStore = create((set) => ({
     { id: 2, title: 'Spaghetti', description: 'With tomato sauce' },
     // Add initial recipes here or start with an empty array
   ],
+  setRecipes: (recipes) => set({ recipes }),
   addRecipe: (recipe) => set((state) => ({
     recipes: [...state.recipes, recipe],
   })),
