@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import AddRecipeForm from './store/components/AddRecipeForm';
-import RecipeList from './store/components/RecipeList';
-import RecipeDetails from './store/components/RecipeDetails';
-
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeList from './components/RecipeList';
+import RecipeDetails from './components/RecipeDetails';
+import searchBar from './components/searchBar'
 function App() {
   return (
     <Router>
