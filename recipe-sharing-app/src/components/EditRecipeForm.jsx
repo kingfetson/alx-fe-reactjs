@@ -6,17 +6,15 @@ const EditRecipeForm = ({ recipe }) => {
   const [title, setTitle] = useState(recipe.title);
   const [description, setDescription] = useState(recipe.description);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Update recipe with trimmed values
+  const handleSubmit = (event) => {
+    event.preventDefault();
     updateRecipe({ 
       id: recipe.id, 
       title: title.trim(), 
       description: description.trim() 
     });
 
-    // Reset form fields after saving
+    // Reset input fields after saving
     setTitle('');
     setDescription('');
   };
@@ -27,13 +25,13 @@ const EditRecipeForm = ({ recipe }) => {
       <input
         type="text"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(event) => setTitle(event.target.value)}
         placeholder="Title"
         required
       />
       <textarea
         value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        onChange={(event) => setDescription(event.target.value)}
         placeholder="Description"
         required
       />
