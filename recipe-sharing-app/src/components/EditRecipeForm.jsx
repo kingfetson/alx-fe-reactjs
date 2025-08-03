@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useRecipeStore } from "../recipeStore";
 
-
 const EditRecipeForm = ({ recipe }) => {
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
   const [title, setTitle] = useState(recipe.title);
@@ -9,7 +8,17 @@ const EditRecipeForm = ({ recipe }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateRecipe({ id: recipe.id, title, description });
+
+    // Update recipe with trimmed values
+    updateRecipe({ 
+      id: recipe.id, 
+      title: title.trim(), 
+      description: description.trim() 
+    });
+
+    // Reset form fields after saving
+    setTitle('');
+    setDescription('');
   };
 
   return (
@@ -20,11 +29,13 @@ const EditRecipeForm = ({ recipe }) => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Title"
+        required
       />
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Description"
+        required
       />
       <button type="submit">Save Changes</button>
     </form>
