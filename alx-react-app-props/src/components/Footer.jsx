@@ -1,7 +1,7 @@
 function Footer() {
   return (
-    <footer style={{ backgroundColor: '#f2f2f2', padding: '10px', textAlign: 'center' }}>
-      <p>&copy; 2025 My Company. All rights reserved.</p>
+    <footer>
+      <p>© 2023 City Lovers</p>
     </footer>
   );
 }
