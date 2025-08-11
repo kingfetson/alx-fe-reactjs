@@ -1,17 +1,11 @@
-function WelcomeMessage({ username }) {
-  return (
-    <div style={{
-      backgroundColor: '#e6f7ff',
-      border: '1px solid #b3e0ff',
-      padding: '15px',
-      borderRadius: '6px',
-      margin: '10px 0',
-      textAlign: 'center'
-    }}>
-      <h2>Welcome, {username}!</h2>
-      <p>Glad to have you back 🚀</p>
-    </div>
-  );
+function WelcomeMessage() {
+    return (
+        <div>
+            <h1>Hello everyone, I am learning React at ALX!</h1>
+            <p>This is a simple JSX component.</p>
+            <p>I am learning about JSX!</p>
+        </div>
+    );
 }
 
 export default WelcomeMessage;
