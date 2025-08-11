@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import recipesData from "../data.json";
 import { Link } from "react-router-dom";
+
 function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
@@ -10,7 +11,21 @@ function HomePage() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-8">🍽 Recipe Sharing Platform</h1>
+      <h1 className="text-3xl font-bold text-center mb-8">
+        🍽 Recipe Sharing Platform
+      </h1>
+
+      {/* Add Recipe Button */}
+      <div className="flex justify-center mb-6">
+        <Link
+          to="/add"
+          className="inline-block bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-transform hover:scale-105"
+        >
+          + Add New Recipe
+        </Link>
+      </div>
+
+      {/* Recipe Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {recipes.map((recipe) => (
           <div
