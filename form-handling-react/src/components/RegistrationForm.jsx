@@ -1,62 +1,50 @@
 import React, { useState } from "react";
 
 function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log({ username, email, password });
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block">Username</label>
+        <label className="block text-sm font-medium">Username</label>
         <input
           type="text"
-          name="username"
-          value={formData.username}   // ✅ fixed
-          onChange={handleChange}
-          className="border rounded p-2 w-full"
+          value={username}            
+          onChange={(e) => setUsername(e.target.value)}
+          className="w-full border rounded px-3 py-2"
         />
       </div>
 
       <div>
-        <label className="block">Email</label>
+        <label className="block text-sm font-medium">Email</label>
         <input
           type="email"
-          name="email"
-          value={formData.email}   // ✅ fixed
-          onChange={handleChange}
-          className="border rounded p-2 w-full"
+          value={email}              
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full border rounded px-3 py-2"
         />
       </div>
 
       <div>
-        <label className="block">Password</label>
+        <label className="block text-sm font-medium">Password</label>
         <input
           type="password"
-          name="password"
-          value={formData.password}   // ✅ fixed
-          onChange={handleChange}
-          className="border rounded p-2 w-full"
+          value={password}          
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full border rounded px-3 py-2"
         />
       </div>
 
       <button
         type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="w-full bg-blue-600 text-white rounded py-2 hover:bg-blue-700"
       >
         Register
       </button>
