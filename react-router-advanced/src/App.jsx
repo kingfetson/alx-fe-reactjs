@@ -4,8 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Profile from "./components/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
-import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./components/ProfileSettings";
+import BlogPost from "./components/BlogPost";
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
           style={{
             display: "flex",
             justifyContent: "center",
-            gap: "40px", // adds spacing between links
+            gap: "40px",
             padding: "70px",
             backgroundColor: "#f4f4f4",
           }}
@@ -24,6 +23,7 @@ function App() {
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/profile">Profile</Link>
+          <Link to="/blog/1">Blog Example</Link> {/* Example link */}
         </nav>
 
         {/* Routes */}
@@ -31,18 +31,19 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
 
-          {/* Protected Profile Route with Nested Routes */}
+          {/* Protected Profile Route */}
           <Route
-            path="/profile"
+            path="/profile/*"
             element={
               <ProtectedRoute>
                 <Profile />
               </ProtectedRoute>
             }
-          >
-            <Route path="details" element={<ProfileDetails />} />
-            <Route path="settings" element={<ProfileSettings />} />
-          </Route>
+          />
+
+          {/* Dynamic Blog Route */}
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Routes>
       </div>
     </BrowserRouter>
